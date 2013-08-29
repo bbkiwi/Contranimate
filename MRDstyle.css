@@ -1,0 +1,114 @@
+input::-moz-focus-inner {
+    border: hidden;
+}
+
+input:focus {
+    outline: none;
+}
+
+textarea.alone {
+    border: 1px solid #000;
+    font-size: 1em;
+    text-align: left;
+    border-radius: 5px;
+    width: 408px;
+    height: 339px;
+}
+
+input.message {
+    background: #49d;
+    font-size: .8em;
+    border-style: none;
+    text-align: left;
+    border-width: 1px;
+    border-radius: 4px;
+    color: #000;
+}
+
+input.alone {
+    font-size: .8em;
+    width: 5em;
+    border-style: solid;
+    height: 1.5em;
+    text-align: left;
+    color: #fff;
+    border-radius: 5px;
+    margin: 1px;
+    border-width: 1px;
+    border-color: #666;
+    background: #999;
+    background: -o-linear-gradient(top, #bbb 0%, #777 100%);
+    background: -moz-linear-gradient(top, #bbb 0%, #777 100%);
+    background: -webkit-linear-gradient(top, #bbb 0%, #777 100%);
+}
+
+input.alone:hover {
+    background: #bbb;
+    background: -o-linear-gradient(top, #ddd 0%, #999 100%);
+    background: -moz-linear-gradient(top, #ddd 0%, #999 100%);
+    background: -webkit-linear-gradient(top, #ddd 0%, #999 100%);
+}
+
+input.alone:active {
+    background: #bbb;
+    background: -o-linear-gradient(top, #ccc 0%, #888 100%);
+    background: -moz-linear-gradient(top, #ccc 0%, #888 100%);
+    background: -webkit-linear-gradient(top, #ccc 0%, #888 100%);
+}
+
+li.menu1 {
+    list-style: none;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+input.menu1 {
+    font-size: .8em;
+    width: 5em;
+    height: 1.5em;
+    text-align: left;
+    border-style: solid;
+    margin: 1px;
+    color: #000;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 8px;
+    border-width: 1px;
+    border-color: #666;
+    border-bottom-color: #000;
+    background: #bbb;
+    background: -o-linear-gradient(top, #bbb 0%, #777 100%);
+    background: -moz-linear-gradient(top, #bbb 0%, #777 100%);
+    background: -webkit-linear-gradient(top, #bbb 0%, #777 100%);
+}
+
+input.menu1:hover {
+    background: #bbb;
+    background: -o-linear-gradient(top, #ddd 0%, #999 100%);
+    background: -moz-linear-gradient(top, #ddd 0%, #999 100%);
+    background: -webkit-linear-gradient(top, #ddd 0%, #999 100%);
+}
+
+div.menu2 {
+    position: absolute;
+}
+
+input.menu2 {
+    background: #aaa;
+    font-size: .8em;
+    position: relative;
+    left: 1px;
+    border-style: solid;
+    margin: 0px;
+    white-space: nowrap;
+    text-align: left;
+    color: #fff;
+    border-radius: 0px;
+    border-width: 1px;
+    border-bottom-width: 0px;
+    border-color: #000;
+}
+
+.style1 {
+    width: 280px;
+}

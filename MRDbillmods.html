@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Micro Robot Dance</title>
+    <link href="MRDstyle.css" rel="stylesheet" type="text/css"/>
+</head>
+<script type="text/javascript" src="MRDfcns.js"></script>
+<body style="color: #000; background-color: #49d; font-family: arial; text-align: center;">
+<br>
+<table width="100%" border="0">
+    <tr>
+        <td style="vertical-align: top" class="style1">
+            <canvas id="dance" width="1000" height="500" style="border: hidden #000000">
+            </canvas>
+        </td>
+        <td>
+            <span style="font-size: 120%">Micro Robot Dance</span><br>
+            <span style="font-size: 80%">v3.1</span><br>
+            <span style="font-size: 80%"><a href="http://ravitz.us/">Cary Ravitz</a></span><br>
+            <span style="font-size: 80%">(Uses HTML5, JavaScript, cookies.)</span><br>
+            <span style="font-size: 80%">(To clear errors, click Reset and select a dance.)</span><br>
+            <hr>
+            <span style="font-size: 80%">Select Dance</span><br>
+            <ul style="text-align: center; white-space: nowrap; padding: 0;">
+                <script type="text/javascript">
+                    adddancedropdown("A", "F", "G", true);
+                    adddancedropdown("G", "M", "N", true);
+                    adddancedropdown("N", "S", "T", true);
+                    adddancedropdown("T", "Z", "ZZ", true);
+                    adddancedropdown("|", "~", "~~", true);
+                </script>
+            </ul>
+            <hr>
+            <span style="font-size: 80%">Control</span><br>
+            <br>
+                <span style="text-align: center; white-space: nowrap;">
+                    <input type="button" class="alone" onclick="reset()" value="Reset">
+                    &nbsp; &nbsp;
+                    <input type="button" class="alone" onclick="pause(0)" value="Stop">
+                    &nbsp; &nbsp;
+                    <input type="button" class="alone" onclick="pause(1)" value="Go">
+                    &nbsp; &nbsp;
+                    <input type="button" class="alone" onclick="pause(1);pause(0);" value="1 Move">
+                    &nbsp; &nbsp;
+                    <input type="button" class="alone" onclick="onepathstep()" value="1 Path">
+                    &nbsp; &nbsp;
+                    <input type="button" class="alone" onclick="onestep(1)" value="0.1 Beat">
+                    &nbsp; &nbsp;
+                    <input type="button" class="alone" onclick="onestep(10)" value="1 Beat">
+                    &nbsp; &nbsp;
+                    <input type="button" class="alone" onclick="onestep(160)" value="16 Beat">
+                </span>
+            <ul style="text-align: center; white-space: nowrap; padding: 0;">
+                <script type="text/javascript">
+                    adddropdown("View,2D ,view(0),3D1,view(1),3D2,view(2),3D3,view(3)".split(','));
+                    adddropdown("Trail,Men,trail(0),Women,trail(1),Selected,trail(2),Off ,trail(-1)".split(','));
+                    adddropdown("Dancers,20 ,topd(19),18,topd(17)".split(','));
+                    adddropdown("Speed,Fast 2,speed(25),Fast 1,speed(38),Nominal ,speed(50),Slow 1,speed(75),Slow 2,speed(100),Arms,setshowarms(true),No Arms ,setshowarms(false)".split(','));
+                    adddropdown("Debug,Prescan On ,presc(true),Prescan Off,presc(false),Label Type,lbls(1),Label Angle,lbls(2),Label Position,lbls(3),Label Couple,lbls(4),Label Off ,lbls(0),Internal Calls,debug()".split(','));
+                </script>
+            </ul>
+            <hr>
+            <span style="font-size: 80%">Dance Builder</span>
+            <ul style="text-align: center; white-space: nowrap; padding: 0;">
+                <script type="text/javascript">
+                    adddancedropdown("A", "F", "G", false);
+                    adddancedropdown("G", "M", "N", false);
+                    adddancedropdown("N", "S", "T", false);
+                    adddancedropdown("T", "Z", "ZZ", false);
+                    adddancedropdown("|", "~", "~~", false);
+                </script>
+            </ul>
+                <span style="text-align: center; white-space: nowrap;">
+                    <input type="button" class="alone" onclick="dlistn=-1; rundance(document.getElementById('dancetext').value); "
+                           value="Run">
+                    <input type="button" class="alone" onclick="saveex()" value="Save">
+                    <input type="text" class="message" id="msgtext" disabled size="30" name="msgtext"
+                           style="color: #000000; background-color: #49d;">
+                    <input type="button" class="alone" onclick="deleteex()" value="Delete">
+                </span>
+            <ul style="text-align: center; white-space: nowrap; padding: 0;">
+                <script type="text/javascript">
+                    setupsc();
+                    addfiguremenu("All");
+                    addfiguremenu("Swing");
+                    addfiguremenu("Circle");
+                    addfiguremenu("Star");
+                    addfiguremenu("Alle");
+                    addfiguremenu("Hey");
+                </script>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<form>
+    Inspect Dancer
+    <input id="whoinspect" value="0" /></form>
+<p id="debugout">Test Debug</p>
+<p id="evaladdpath">AddPath</p>
+<p id="whonotfinished">WhoNotFinished</p>
+
+<form name="danceform">
+    <textarea class="alone" id="dancetext" name="dancetext" wrap="off" spellcheck="false"></textarea>
+    <textarea class="alone" id="dancetext0" rows="20" cols="60" name="dancetext0" wrap="off"
+              spellcheck="false"></textarea><textarea class="alone" id="dancetext1" rows="20" cols="60"
+                                                      name="dancetext1" wrap="off" spellcheck="false"></textarea><textarea class="alone"
+                                                                                                                           id="dancetext2" rows="20" cols="60" name="dancetext2" wrap="off" spellcheck="false"></textarea></form>
+<p style="text-align: left; font-size: 80%">
+    <br>
+    The dance description starts with: title - author.
+    <br>
+    <br>
+    Then the initial formation: becket, becketccw, becketdiagonal, improper, improperfaceacross,
+    improperwaves, reverseimproper.
+    <br>
+    <br>
+    Then the dance figures, which are specfied in one of two ways.
+    <br>
+    &nbsp; The internal routine that lets you specify a number of options.
+    <br>
+    &nbsp; &nbsp; The internal routines have these options:
+    <br>
+    &nbsp; &nbsp; + means the first routine
+    <br>
+    &nbsp; &nbsp; = another simultaneous routine (for different dancers)
+    <br>
+    &nbsp; &nbsp; &nbsp; all, men, women, onemen, onewomen, twomen, twowomen
+    <br>
+    &nbsp; &nbsp; Parameters depend on the routine.
+    <br>
+    &nbsp; &nbsp; Options depend on the routine.
+    <br>
+    &nbsp; A shortcut with no options.
+    <br>
+    &nbsp; &nbsp; The shortcuts are listed in the menus over the text box.
+    <br>
+    <br>
+    "Lol" to start a shortcut means the figure starts with ladies on the left.
+    <br>
+    <br>
+    Prescan runs the dance through multiple cycles with no display to determine the
+    end effects. To debug a sequence, set Prescan off (ends will jump instantly because
+    they have no foresight).
+    <br>
+    <br>
+    The Debug button displays the end effects (if known) and internal routines.
+    <br>
+    <br>
+    There is no error checking or handling.
+</p>
+<script type="text/javascript">
+    debugaddpath = document.getElementById("evaladdpath");
+    debugWhoNotFinished = document.getElementById("whonotfinished");
+
+    presc(false); //bill added after menus made
+
+    ctx = document.getElementById("dance").getContext("2d");
+    //e = -1;
+    e = 1;
+    if (initdance != "") {
+        for (i = 0; a[i] != undefined; i++) {
+            d = a[i].substr(0, a[i].indexOf(" - "));
+            if (initdance == d) { e = i; }
+        }
+    }
+    if (e == -1) {
+        document.getElementById("dancetext").value = getcookie("currenttext");
+        rundance(getcookie("currentdance"));
+    }
+    else rundance(a[e]);
+</script>
+<p>
+    Last modified 9:17 PM, 29 Jun 2013 - File size 220K - Count 14602</p>
+<p style="font-size: 50%">
+    Keywords: 2d 3d animation Cary choreography contra contradance dance dances micro
+    Ravitz robot
+</p>
+</body>
+</html>
